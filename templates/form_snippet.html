@@ -1,0 +1,21 @@
+<!--Para agregar el filtro se hace como en la siguiente linea para agregar la clase de error -->
+{% load add_attr %}
+<!--Los campos en django se llaman field y se iteran asi-->
+{% for field in form %}
+<div class="mb-3">
+    <!-- Aqui se muestra el nombre del label que es el campo y el input que es el field -->
+    <!-- quitar el {{ field }} para agregarle filtros -->
+    {{ field.label_tag }} 
+    {% if field.errors %}
+        {{ field|add_attr:"class:is-invalid" }}
+    {% else %}  
+        {{ field }}
+    {% endif %}  
+    <!--Si el formulario tiene errores seria asi -->
+    <div id="validationServer03Feedback" class="invalid-feedback">
+    {% for error in field.errors %}
+        {{ error }}
+    {% endfor %}
+    </div>
+</div>
+{% endfor %}

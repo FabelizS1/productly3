@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+<!--Se esta extendiendo del archivo de base.html -->
+
+<!--Esto es un bloque , donde se agrega toda la informacion del html-->
+{% block content %}
+<a href="{% url 'productos:formulario' %}">Nuevo Producto</a>
+
+
+<h1>Productos</h1>
+
+<!--Creo una tabla llamada Table y agrego la clase llamada Table,
+luego dentro de eso creo una cabecera thead, luego se agrega un tr
+luego todas las columnas th*4  donde esta expresion representa que quiero 4 th
+table.table>thead>th>th*4 para crear mas rapido en visual source code
+-->
+<table class="table">
+    <thead>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Stock</th>
+        <th>Puntaje</th>
+        <th>Categoria</th>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <!--Informacion de la url a renderizar -->
+            <td><a href="{% url 'productos:detalle' producto.id %}">{{ producto.id }}</a></td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.puntaje }}</td>
+            <td>{{ producto.categoria }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

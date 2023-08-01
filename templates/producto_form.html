@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<!-- con el atributo novalidate no se validan los campos del formulario -->
+<form novalidate action="{% url 'productos:formulario' %}" method="post">
+    <!--Metodo de seguridad para que no sea facil de hackear-->
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Enviar"/>
+</form>    
+{% endblock %}
